@@ -3,9 +3,7 @@ package base;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.LogStatus;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -170,5 +168,51 @@ public class CommonAPI {
             e.printStackTrace();
         }
     }
+
+    // common methods
+
+    public void clickOnElementByXpath(String locator) {
+        driver.findElement(By.xpath(locator)).click();
+    }
+
+    public void clickOnElementById(String locator) {
+        driver.findElement(By.id(locator)).click();
+    }
+
+
+    public void typeOnElementByXpath(String locator, String value) {
+        driver.findElement(By.xpath(locator)).sendKeys(value);
+    }
+
+    public void typeOnElementById(String locator, String value) {
+        driver.findElement(By.id(locator)).sendKeys(value);
+    }
+
+
+    public String getValueByXpath(String locator) {
+        return driver.findElement(By.xpath(locator)).getText();
+    }
+
+    public boolean isElementDisplayed(String locator) {
+        return driver.findElement(By.xpath(locator)).isDisplayed();
+    }
+
+    public boolean isElementEnabled(String locator) {
+        boolean flag = true;
+        flag = driver.findElement(By.xpath(locator)).isEnabled();
+        return flag;
+    }
+
+    public boolean isElementSelected(String locator) {
+        boolean flag = true;
+        flag = driver.findElement(By.xpath(locator)).isSelected();
+        return flag;
+    }
+
+    public WebElement getElement(String locator) {
+        WebElement element = driver.findElement(By.xpath(locator));
+        return element;
+    }
+
 
 }
